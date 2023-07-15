@@ -1,11 +1,12 @@
 function LoginApp() {
+
     return (
       <>
       <div className="container my-5">
   <h1 className="text-center">Inicio de Sesión</h1>
   <div className="row justify-content-center">
     <div className="col-12 col-md-8 col-lg-5">
-      <form className=" border border-primary rounded p-4">
+      <form className=" border border-primary rounded p-4" onSubmit={handleSeccion}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email
