@@ -1,4 +1,4 @@
-function FormReserva() {
+function FormReservas() {
     return (<>
     <div className="container my-5">
   <h1 className="text-center">Formulario de Registro</h1>
@@ -86,4 +86,4 @@ function FormReserva() {
     </>  );
 }
 
-export default FormReserva;
+export default FormReservas;
