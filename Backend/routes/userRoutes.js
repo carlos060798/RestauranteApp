@@ -7,6 +7,8 @@ const router = express.Router();
 
 // Ruta para insertar una nueva reservas y listar todas las reservas
 router.route('/user').get(userController.listarUsers)
-.post( userController.insertarUser);
+.post( userController.insertarUser)
+
+router.post('/login',userController.AutenticarUser);
 
 module.exports = router;
