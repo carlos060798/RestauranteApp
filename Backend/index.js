@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const reservasRoutes = require('./routes/reservasRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -8,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Rutas
-app.use('/api', reservasRoutes);
+app.use('/api', reservasRoutes, userRoutes);
 
 // Puerto de escucha del servidor
 const port = 4000;
