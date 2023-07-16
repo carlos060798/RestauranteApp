@@ -1,4 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 function LoginApp() {
+
+  const redireccion = useNavigate();
+  
+  const handleSeccion = (e) => {
+    e.preventDefault();
+    console.log("Seccion");
+    redireccion("/");
+  }
 
     return (
       <>

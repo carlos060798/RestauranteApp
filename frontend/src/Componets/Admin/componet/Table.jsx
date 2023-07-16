@@ -1,3 +1,5 @@
+import EditarReserva from "./Modal";
+
 function ReservasTable() {
     return ( <>
     <div className="container my-5">
@@ -30,7 +32,7 @@ function ReservasTable() {
           <td>4</td>
           <td>Observación sobre la reserva</td>
           <td>
-            <button className="btn btn-primary btn-sm">Editar</button>
+           <EditarReserva/>
           </td>
         </tr>
       </tbody>
