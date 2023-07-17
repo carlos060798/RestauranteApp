@@ -51,6 +51,7 @@ exports.listarUsers = (req, res) => {
         .json({ message: "usuarios listados exitosamente.", result });
     });
 }
+
 exports.AutenticarUser = (req, res) => {
   const { email, password } = req.body;
 
@@ -66,15 +67,21 @@ exports.AutenticarUser = (req, res) => {
       return res.status(404).json({ message: 'Correo no encontrado' });
     }
 
+    const user = results[0];
+
     // Verificar la contraseña ingresada con la almacenada en la base de datos
-    if (password !== results[0].password) {
+    if (password !== user.password) {
       return res.status(401).json({ message: 'Contraseña incorrecta' });
     }
 
-    // Autenticación exitosa
-    res.json({ message: 'Autenticación exitosa' });
+    // Verificar el rol del usuario
+    if (user.rol_id === 1) {
+      // Es administrador
+     
+      return  res.json({ message: 'Autenticación exitosa (Administrador)' });
+    }else{
+      return   res.status(401).json({ message: 'Tu rol no es de administrador' });
+
+  }
   });
 };
-
-  
-
