@@ -18,13 +18,3 @@ connection.connect((err) => {
 module.exports = connection;
 
 
-/*const mysql = require('mysql');
-
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'appreservas'
-});
-
-module.exports = connection;*/
