@@ -40,7 +40,7 @@ exports.insertarUser = (req, res) => {
 };
 
 exports.listarUsers = (req, res) => {
-  const query = "SELECT nombres, apellidos, email,id FROM usuarios";
+  const query = "SELECT nombres, apellidos,tipodocumento,identificacion,email,id FROM usuarios";
   db.query(query, (error, result) => {
     if (error) {
       console.error("Error al listar usuarios", error);
@@ -53,6 +53,8 @@ exports.listarUsers = (req, res) => {
       apellidos: usuario.apellidos,
       email: usuario.email,
       id: usuario.id,
+      tipodocumento: usuario.tipodocumento,
+      identificacion: usuario.identificacion,
     }));
 
     return res
