@@ -5,13 +5,15 @@ const db = require("../db");
 // Función para insertar una nueva reserva en la base de datos
 exports.insertarReserva = (req, res) => {
   const {
-    usuario_id,
+    
     fecha_reserva,
     tipo_reserva,
     cantidad_personas,
     descripcion,
-    estado,
+   
   } = req.body;
+  const usuario_id = req.params.id;
+  const estado = "pendiente"
   // Construir la consulta SQL
   const query =
     "INSERT INTO reservas (usuario_id, fecha_reserva, tipo_reserva, cantidad_personas, descripcion, estado) VALUES (?, ?, ?, ?, ?, ?)";

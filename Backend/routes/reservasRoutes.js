@@ -6,12 +6,13 @@ const reservasController = require('../controllers/reservasController');
 const router = express.Router();
 
 // Ruta para insertar una nueva reservas y listar todas las reservas
-router.route('/reservas').get(reservasController.listarReservas)
-.post( reservasController.insertarReserva);
+router.get('/reservas',reservasController.listarReservas)
+router.post('/reservas/:id', reservasController.insertarReserva);
+
 
 
 // Ruta para listar y actualizar todas las reservas
 
-router.route('/reservas/:id').get(reservasController.listarReserva).put(reservasController.actualizarReserva).patch(reservasController.actualizarEstadoReserva)
+router.route('reservas/:id').get(reservasController.listarReserva).put(reservasController.actualizarReserva).patch(reservasController.actualizarEstadoReserva)
 
 module.exports = router;

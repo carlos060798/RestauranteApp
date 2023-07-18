@@ -35,26 +35,22 @@ function FormReservas() {
     }));
   
   };
-  
   const handleReserva = async (e) => {
     e.preventDefault();
 
     try {
       // 1. Llamar a la API para crear el usuario
-      const usuarioResponse = await axios.post('http://localhost:4000/api/user', formData);
-      const usuarioId = usuarioResponse.data.idUser;
+      const usuarioResponse = await axios.post('http://localhost:4000/user', formData);
+      const usuarioId = usuarioResponse.data.idUsuer;
 
       // 2. Llamar a la API para crear la reserva usando el ID del usuario
-      await axios.post('http://localhost:4000/api/reservas', { ...DataReserva, usuario_id: usuarioId });
+      await axios.post(`http://localhost:4000/reservas/${usuarioId}`, DataReserva);
 
       console.log('Reserva creada exitosamente');
     } catch (error) {
       console.error('Error al crear la reserva:', error);
     }
   };
-  
-  
-
     return (<>
     <div className="container my-5">
   <h1 className="text-center">Formulario de Registro</h1>

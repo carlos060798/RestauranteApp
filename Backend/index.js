@@ -24,7 +24,7 @@ app.use(cors({ origin: '*' }))// para que el servidor pueda recibir peticiones d
 app.use(bodyParser.json());
 
 // Rutas
-app.use('/api', reservasRoutes, userRoutes);
+app.use('/', reservasRoutes, userRoutes);
 
 // Puerto de escucha del servidor
 const port = 4000;
