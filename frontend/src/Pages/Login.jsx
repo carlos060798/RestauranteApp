@@ -3,8 +3,7 @@ import LoginApp from "../Componets/generales/Seccion";
 
 function LoginSection() {
     return (<>
-    <LayautADmin/>
-     {/* <LoginApp/>*/}
+     <LoginApp/>
     </>  );
 }
 

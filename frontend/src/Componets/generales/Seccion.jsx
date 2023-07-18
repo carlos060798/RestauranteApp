@@ -1,13 +1,39 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import axios from 'axios';
 function LoginApp() {
 
+  const  [DataUser,setDataUser] = useState({
+    email:"",
+    password:""
+  })
+
   const redireccion = useNavigate();
+
+  const handleChangeUser = (e) => {
+    const { name, value } = e.target;
+    setDataUser((prevDataUser) => ({
+      ...prevDataUser,
+      [name]: value
+    }));
   
-  const handleSeccion = (e) => {
+  };
+
+  const handleSeccion= async (e) => {
     e.preventDefault();
-    console.log("Seccion");
-    redireccion("/");
-  }
+
+    try {
+      // 1. Llamar a la API para crear el usuario
+      
+      const usuarioResponse = await axios.post('http://localhost:4000/login', DataUser);
+      
+
+      console.log('AUTENTICACION CORRECTA');
+      redireccion('/admin');
+    } catch (error) {
+      console.error('NO SE PUDO AUTENTICAR:', error);
+    }
+  };
 
     return (
       <>
@@ -23,9 +49,10 @@ function LoginApp() {
           <input
             type="email"
             className="form-control"
-            id="email"
             aria-describedby="emailHelp"
             name="email"
+            value={DataUser.email}
+            onChange={handleChangeUser}
           />
         </div>
         <div className="mb-3">
@@ -35,8 +62,9 @@ function LoginApp() {
           <input
             type="password"
             className="form-control"
-            id="Password"
-            name="Password"
+            name="password"
+            value={DataUser.password}
+            onChange={handleChangeUser}
           />
         </div>
         <div className="d-flex justify-content-center">

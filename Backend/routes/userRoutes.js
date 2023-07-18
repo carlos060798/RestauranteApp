@@ -11,7 +11,7 @@ router
   .get(userController.listarUsers)
   .post(userController.insertarUser);
 
-router.post("login", userController.AutenticarUser);
+router.post("/login", userController.AutenticarUser);
 
 router
   .route("user/:id")
