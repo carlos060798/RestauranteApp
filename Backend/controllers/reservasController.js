@@ -9,20 +9,20 @@ exports.insertarReserva = (req, res) => {
     fecha_reserva,
     tipo_reserva,
     cantidad_personas,
-    descripcion,
+    observaciones	,
    
   } = req.body;
   const usuario_id = req.params.id;
   const estado = "pendiente"
   // Construir la consulta SQL
   const query =
-    "INSERT INTO reservas (usuario_id, fecha_reserva, tipo_reserva, cantidad_personas, descripcion, estado) VALUES (?, ?, ?, ?, ?, ?)";
+    "INSERT INTO reservas (usuario_id, fecha_reserva, tipo_reserva, cantidad_personas,observaciones,estado) VALUES (?, ?, ?, ?, ?, ?)";
   const values = [
     usuario_id,
     fecha_reserva,
     tipo_reserva,
     cantidad_personas,
-    descripcion,
+    observaciones	,
     estado,
   ];
 

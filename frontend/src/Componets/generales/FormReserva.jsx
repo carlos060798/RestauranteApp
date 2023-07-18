@@ -16,7 +16,7 @@ function FormReservas() {
     fecha_reserva:"",
     tipo_reserva:"",
     cantidad_personas:"",
-    descripcion:""
+    observaciones	:""
  })
 
   const handleChange = (e) => {
@@ -40,11 +40,14 @@ function FormReservas() {
 
     try {
       // 1. Llamar a la API para crear el usuario
+      
       const usuarioResponse = await axios.post('http://localhost:4000/user', formData);
       const usuarioId = usuarioResponse.data.idUsuer;
 
       // 2. Llamar a la API para crear la reserva usando el ID del usuario
+      console.log(DataReserva.descripcion)
       await axios.post(`http://localhost:4000/reservas/${usuarioId}`, DataReserva);
+      
 
       console.log('Reserva creada exitosamente');
     } catch (error) {
