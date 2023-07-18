@@ -5,19 +5,19 @@ const db = require("../db");
 
 // Función para insertar una nueva reserva en la base de datos
 exports.insertarUser = (req, res) => {
-  const { nombres, apellidos, tipo_documento, identificacion, email } =
+  const { nombres, apellidos, tipodocumento, identificacion, email } =
     req.body;
-  console.log({ nombres, apellidos, tipo_documento, identificacion, email });
+  console.log({ nombres, apellidos, tipodocumento, identificacion, email });
   const password = "";
   const rol_id = 2;
 
   // Construir la consulta SQL
   const insertQuery =
-    "INSERT INTO usuarios (nombres, apellidos, tipo_documento, identificacion, email, password,rol_id) VALUES (?, ?, ?, ?, ?,?,?)";
+    "INSERT INTO usuarios (nombres, apellidos, tipodocumento, identificacion, email, password,rol_id) VALUES (?, ?, ?, ?, ?,?,?)";
   const values = [
     nombres,
     apellidos,
-    tipo_documento,
+    tipodocumento,
     identificacion,
     email,
     password,
@@ -35,7 +35,7 @@ exports.insertarUser = (req, res) => {
 
     // La reserva se insertó correctamente
     console.log(result);
-    return res.status(200).json({ message: "Reserva insertada exitosamente." });
+    return res.status(200).json({ message: "Reserva insertada exitosamente." ,idUsuer:result.insertId});
   });
 };
 

@@ -1,19 +1,22 @@
 import { useState } from "react";
+import axios from 'axios';
 
 function FormReservas() {
+
+
 
   const [formData, setFormData] = useState({
     nombres: "",
     apellidos: "",
-    tipoDocumento: "",
+    tipodocumento: "",
     identificacion: "",
     email: "",
   });
  const [DataReserva,setDataReserva]=useState({
-  fechaReserva:"",
-    tipoReserva:"",
-    cantidadPersonas:"",
-    observaciones:""
+    fecha_reserva:"",
+    tipo_reserva:"",
+    cantidad_personas:"",
+    descripcion:""
  })
 
   const handleChange = (e) => {
@@ -33,11 +36,22 @@ function FormReservas() {
   
   };
   
-  const handleReserva = (e) => {
+  const handleReserva = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    console.log(DataReserva);
-  }
+
+    try {
+      // 1. Llamar a la API para crear el usuario
+      const usuarioResponse = await axios.post('http://localhost:4000/api/user', formData);
+      const usuarioId = usuarioResponse.data.idUser;
+
+      // 2. Llamar a la API para crear la reserva usando el ID del usuario
+      await axios.post('http://localhost:4000/api/reservas', { ...DataReserva, usuario_id: usuarioId });
+
+      console.log('Reserva creada exitosamente');
+    } catch (error) {
+      console.error('Error al crear la reserva:', error);
+    }
+  };
   
   
 
@@ -64,11 +78,11 @@ function FormReservas() {
                   onChange={handleChange}/>
         </div>
         <div className="mb-3">
-          <label htmlFor="tipoDocumento" className="form-label">
+          <label htmlFor="tipodocumento" className="form-label">
             Tipo de Documento
           </label>
-          <select className="form-select" name="tipoDocumento"
-                  value={formData.tipoDocumento}
+          <select className="form-select" name="tipodocumento"
+                  value={formData.tipodocumento}
                   onChange={handleChange}>
             <option value="">Seleccionar</option>
             <option value="cc">Cédula de Ciudadanía</option>
@@ -97,18 +111,18 @@ function FormReservas() {
                   onChange={handleChange} />
         </div>
         <div className="mb-3">
-          <label htmlFor="fechaReserva" className="form-label">
+          <label htmlFor="fecha_reserva" className="form-label">
             Fecha de la Reserva
           </label>
-          <input type="date" className="form-control" name="fechaReserva" 
-          value={DataReserva.fechaReserva}
+          <input type="date" className="form-control" name="fecha_reserva" 
+          value={DataReserva.fecha_reserva}
           onChange={handleChangeReserva }/>
         </div>
         <div className="mb-3">
-          <label htmlFor="tipoReserva" className="form-label">
+          <label htmlFor="tipo_reserva" className="form-label">
             Tipo de Reserva
           </label>
-          <select className="form-select" name="tipoReserva"   value={DataReserva.tipoReserva}
+          <select className="form-select" name="tipo_reserva"   value={DataReserva.tipo_reserva}
           onChange={handleChangeReserva}>
             <option value="">Seleccionar</option>
             <option value="cena">Cena</option>
@@ -122,8 +136,8 @@ function FormReservas() {
           <label htmlFor="cantidadPersonas" className="form-label">
             Cantidad de Personas
           </label>
-          <input type="number" className="form-control" name="cantidadPersonas"
-          value={DataReserva.cantidadPersonas}
+          <input type="number" className="form-control" name="cantidad_personas"
+          value={DataReserva.cantidad_personas}
           onChange={handleChangeReserva} />
            
         </div>
