@@ -1,12 +1,8 @@
-// reservasController.js
-const bcrypt = require("bcrypt");
-
 const db = require("../db");
 
 // Función para insertar una nueva reserva en la base de datos
 exports.insertarUser = (req, res) => {
-  const { nombres, apellidos, tipodocumento, identificacion, email } =
-    req.body;
+  const { nombres, apellidos, tipodocumento, identificacion, email } = req.body;
   console.log({ nombres, apellidos, tipodocumento, identificacion, email });
   const password = "";
   const rol_id = 2;
@@ -35,12 +31,18 @@ exports.insertarUser = (req, res) => {
 
     // La reserva se insertó correctamente
     console.log(result);
-    return res.status(200).json({ message: "Reserva insertada exitosamente." ,idUsuer:result.insertId});
+    return res
+      .status(200)
+      .json({
+        message: "Reserva insertada exitosamente.",
+        idUsuer: result.insertId,
+      });
   });
 };
 
 exports.listarUsers = (req, res) => {
-  const query = "SELECT nombres, apellidos,tipodocumento,identificacion,email,id FROM usuarios";
+  const query =
+    "SELECT nombres, apellidos,tipodocumento,identificacion,email,id FROM usuarios";
   db.query(query, (error, result) => {
     if (error) {
       console.error("Error al listar usuarios", error);

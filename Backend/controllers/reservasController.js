@@ -1,19 +1,11 @@
-// reservasController.js
-
 const db = require("../db");
 
 // Función para insertar una nueva reserva en la base de datos
 exports.insertarReserva = (req, res) => {
-  const {
-    
-    fecha_reserva,
-    tipo_reserva,
-    cantidad_personas,
-    observaciones	,
-   
-  } = req.body;
+  const { fecha_reserva, tipo_reserva, cantidad_personas, observaciones } =
+    req.body;
   const usuario_id = req.params.id;
-  const estado = "pendiente"
+  const estado = "pendiente";
   // Construir la consulta SQL
   const query =
     "INSERT INTO reservas (usuario_id, fecha_reserva, tipo_reserva, cantidad_personas,observaciones,estado) VALUES (?, ?, ?, ?, ?, ?)";
@@ -22,7 +14,7 @@ exports.insertarReserva = (req, res) => {
     fecha_reserva,
     tipo_reserva,
     cantidad_personas,
-    observaciones	,
+    observaciones,
     estado,
   ];
 
@@ -78,49 +70,54 @@ exports.listarReserva = (req, res) => {
 // Función para actualizar una reserva en la base de datos por id
 
 exports.actualizarReserva = (req, res) => {
-const ReservaId = req.params.id;
-const { fecha_reserva,
-  tipo_reserva,
-  cantidad_personas,
-  descripcion}= req.body;
-const query = "UPDATE reservas SET fecha_reserva = ?, tipo_reserva = ?, cantidad_personas = ?, descripcion = ? WHERE id = ?";
-const values = [fecha_reserva,tipo_reserva,cantidad_personas,descripcion,ReservaId];
-console.log(values);
-db.query(query, values, (error, result) => {
-  try {
-    return res
-      .status(200)
-      .json({ message: "Reserva actualizada exitosamente.", result });
-  } catch (error) {
-    console.error("Error al actualizar reservas:", error);
-    return res
-      .status(500)
-      .json({ message: "Ocurrió un error al actualizar las reservas." });
-  }
-});
-}
+  const ReservaId = req.params.id;
+  const { fecha_reserva, tipo_reserva, cantidad_personas, descripcion } =
+    req.body;
+  const query =
+    "UPDATE reservas SET fecha_reserva = ?, tipo_reserva = ?, cantidad_personas = ?, descripcion = ? WHERE id = ?";
+  const values = [
+    fecha_reserva,
+    tipo_reserva,
+    cantidad_personas,
+    descripcion,
+    ReservaId,
+  ];
+  console.log(values);
+  db.query(query, values, (error, result) => {
+    try {
+      return res
+        .status(200)
+        .json({ message: "Reserva actualizada exitosamente.", result });
+    } catch (error) {
+      console.error("Error al actualizar reservas:", error);
+      return res
+        .status(500)
+        .json({ message: "Ocurrió un error al actualizar las reservas." });
+    }
+  });
+};
 
 // Función para actualizar un atributo de estado una reserva en la base de datos por id
 
 exports.actualizarEstadoReserva = (req, res) => {
-   const ReservaId = req.params.id;
-    const { estado } = req.body;
-    const query = "UPDATE reservas SET estado = ? WHERE id = ?";
-    const values = [estado, ReservaId];
-    console.log(values);
-    db.query(query, values, (error, result) => {
-      try {
-        return res
-          .status(200)
-          .json({ message: "Reserva  confirmada exitosamente.", result });
-      } catch (error) {
-        console.error("Error al actualizar reservas:", error);
-        return res
-          .status(500)
-          .json({ message: "Ocurrió un error al actualizar las reservas." });
-      }
-    })
-}
+  const ReservaId = req.params.id;
+  const { estado } = req.body;
+  const query = "UPDATE reservas SET estado = ? WHERE id = ?";
+  const values = [estado, ReservaId];
+  console.log(values);
+  db.query(query, values, (error, result) => {
+    try {
+      return res
+        .status(200)
+        .json({ message: "Reserva  confirmada exitosamente.", result });
+    } catch (error) {
+      console.error("Error al actualizar reservas:", error);
+      return res
+        .status(500)
+        .json({ message: "Ocurrió un error al actualizar las reservas." });
+    }
+  });
+};
 
 exports.obtenerReservaPorUsuario = (req, res) => {
   const userId = req.params.userId;

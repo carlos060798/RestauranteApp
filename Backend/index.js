@@ -5,6 +5,7 @@ const userRoutes = require('./routes/userRoutes');
 const  cors= require('cors');
 
 const app = express();
+// configuración de cors
 const dominiosPermitidos = ["http://localhost:3000"] // dominios permitidos para recibir peticiones
 
 
