@@ -1,10 +1,17 @@
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ReservasTable from "./componet/Table";
 
 function LayautADmin() {
   const redireccion = useNavigate();
+
+  // Función para cerrar la sesión
+  const handleCerrarSesion = () => {
+    // Limpiar el estado de inicio de sesión en localStorage
+    localStorage.removeItem("usuarioLogeado");
+    // Redirigir a la página de inicio de sesión
+    redireccion("/login");
+  };
 
   useEffect(() => {
     // Verificar si el usuario ha iniciado sesión
@@ -14,6 +21,7 @@ function LayautADmin() {
       redireccion("/login");
     }
   }, [redireccion]);
+
   return (
     <>
       <div className="container mt-5">
@@ -46,8 +54,9 @@ function LayautADmin() {
               role="tab"
               aria-controls="v-pills-messages"
               aria-selected="false"
+              onClick={handleCerrarSesion} // Asociar la función de cierre de sesión al botón
             >
-             Cerrar Seccion
+             Cerrar Sesión
             </button>
 
           </div>
@@ -57,7 +66,7 @@ function LayautADmin() {
               id="v-pills-home"
               role="tabpanel"
               aria-labelledby="v-pills-home-tab"
-              tabindex="0"
+              tabIndex="0"
             >
               <ReservasTable/>
             </div>
@@ -69,4 +78,3 @@ function LayautADmin() {
 }
 
 export default LayautADmin;
-//  <ReservasTable />
