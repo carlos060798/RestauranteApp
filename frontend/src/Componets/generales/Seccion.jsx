@@ -9,7 +9,7 @@ function LoginApp() {
   });
 
   const redireccion = useNavigate();
-  const [alerta, setAlerta] = useState({}); // Estado para mostrar la alerta
+  const [alerta, setAlerta] = useState({});
 
   const handleChangeUser = (e) => {
     const { name, value } = e.target;
@@ -18,6 +18,7 @@ function LoginApp() {
       [name]: value,
     }));
   };
+
   const handleSeccion = async (e) => {
     e.preventDefault();
     if ([DataUser.email, DataUser.password].includes("")) {
@@ -29,7 +30,6 @@ function LoginApp() {
     }
 
     try {
-      // Llamar a la API para autenticar al usuario
       const usuarioResponse = await axios.post(
         "http://localhost:4000/login",
         DataUser
@@ -45,6 +45,9 @@ function LoginApp() {
           msg: data.message,
           error: false,
         });
+
+        // Guardar la información de inicio de sesión en el almacenamiento local del navegador
+        localStorage.setItem("usuarioLogeado", "true");
 
         // Redirigir después de 5 segundos
         setTimeout(() => {

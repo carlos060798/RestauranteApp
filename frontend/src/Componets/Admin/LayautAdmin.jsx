@@ -1,7 +1,19 @@
 
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ReservasTable from "./componet/Table";
 
 function LayautADmin() {
+  const redireccion = useNavigate();
+
+  useEffect(() => {
+    // Verificar si el usuario ha iniciado sesión
+    const usuarioLogeado = localStorage.getItem("usuarioLogeado");
+    if (!usuarioLogeado || usuarioLogeado !== "true") {
+      // Si el usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
+      redireccion("/login");
+    }
+  }, [redireccion]);
   return (
     <>
       <div className="container mt-5">
