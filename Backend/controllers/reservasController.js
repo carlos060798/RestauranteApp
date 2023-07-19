@@ -121,3 +121,25 @@ exports.actualizarEstadoReserva = (req, res) => {
       }
     })
 }
+
+exports.obtenerReservaPorUsuario = (req, res) => {
+  const userId = req.params.userId;
+  const query = `SELECT * FROM reservas WHERE usuario_id= ?`;
+  db.query(query, userId, (error, result) => {
+    if (error) {
+      console.error("Error al obtener la reserva:", error);
+      return res
+        .status(500)
+        .json({ message: "Ocurrió un error al obtener la reserva." });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: "Reserva no encontrada." });
+    }
+
+    const reserva = result[0];
+    return res
+      .status(200)
+      .json({ message: "Reserva obtenida exitosamente.", reserva });
+  });
+};
