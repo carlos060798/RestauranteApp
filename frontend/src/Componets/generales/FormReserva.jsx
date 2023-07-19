@@ -107,7 +107,7 @@ function FormReservas() {
   return (
     <>
       <div className="container my-5">
-        <h1 className="text-center">Formulario de Registro</h1>
+        <h1 className="text-center fw-bold text-center text-primary">Formulario de Registro</h1>
         <form onSubmit={handleReserva}>
           <div className="row">
             <div className="col-md-6">
