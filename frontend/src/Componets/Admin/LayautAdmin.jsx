@@ -1,4 +1,4 @@
-import EditarReserva from "./componet/Modal";
+
 import ReservasTable from "./componet/Table";
 
 function LayautADmin() {
@@ -47,7 +47,7 @@ function LayautADmin() {
               aria-labelledby="v-pills-home-tab"
               tabindex="0"
             >
-              <EditarReserva />
+              <ReservasTable/>
             </div>
           </div>
         </div>
