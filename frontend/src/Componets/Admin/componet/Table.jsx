@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import EditarReserva from './Modal';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import EditarReserva from "./Modal";
 
 function ReservasTable() {
   const [usuariosConReservas, setUsuariosConReservas] = useState([]);
@@ -10,13 +10,15 @@ function ReservasTable() {
     const fetchData = async () => {
       try {
         // Obtener los datos de usuarios
-        const usuariosResponse = await axios.get('http://localhost:4000/user');
+        const usuariosResponse = await axios.get("http://localhost:4000/user");
         const usuarios = usuariosResponse.data.usuarios;
 
         // Obtener las reservas para cada usuario
         const usuariosConReservas = await Promise.all(
           usuarios.map(async (usuario) => {
-            const reservasResponse = await axios.get(`http://localhost:4000/reservas/${usuario.id}`);
+            const reservasResponse = await axios.get(
+              `http://localhost:4000/reservas/${usuario.id}`
+            );
             const reserva = reservasResponse.data.reserva;
             return { ...usuario, reserva };
           })
@@ -30,7 +32,7 @@ function ReservasTable() {
         setUsuariosConReservas(aplanado);
         setIsLoading(false);
       } catch (error) {
-        console.error('Error al obtener los datos:', error);
+        console.error("Error al obtener los datos:", error);
         setIsLoading(false);
       }
     };
@@ -71,10 +73,18 @@ function ReservasTable() {
                     <td>{usuario.tipodocumento}</td>
                     <td>{usuario.identificacion}</td>
                     <td>{usuario.email}</td>
-                    <td>{usuario.reserva ? usuario.reserva.fecha_reserva : ''}</td>
-                    <td>{usuario.reserva ? usuario.reserva.tipo_reserva : ''}</td>
-                    <td>{usuario.reserva ? usuario.reserva.cantidad_personas : ''}</td>
-                    <td>{usuario.reserva ? usuario.reserva.observaciones : ''}</td>
+                    <td>
+                      {usuario.reserva ? usuario.reserva.fecha_reserva : ""}
+                    </td>
+                    <td>
+                      {usuario.reserva ? usuario.reserva.tipo_reserva : ""}
+                    </td>
+                    <td>
+                      {usuario.reserva ? usuario.reserva.cantidad_personas : ""}
+                    </td>
+                    <td>
+                      {usuario.reserva ? usuario.reserva.observaciones : ""}
+                    </td>
                     <td>
                       <EditarReserva />
                     </td>
@@ -90,20 +100,3 @@ function ReservasTable() {
 }
 
 export default ReservasTable;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

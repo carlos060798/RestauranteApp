@@ -1,4 +1,4 @@
-import Alerta from "./Alerta"; // Importamos el componente de alerta
+import Alerta from "./Alerta"; 
 import useResevas from "../../hooks/useReservas,";
 
 function FormReservas() {
@@ -146,7 +146,6 @@ function FormReservas() {
           </div>
         </form>
         {alerta.msg && <Alerta alerta={alerta} />}{" "}
-        {/* Mostrar la alerta si existe */}
       </div>
     </>
   );

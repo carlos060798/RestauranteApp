@@ -7,9 +7,7 @@ function LayautADmin() {
 
   // Función para cerrar la sesión
   const handleCerrarSesion = () => {
-    // Limpiar el estado de inicio de sesión en localStorage
     localStorage.removeItem("usuarioLogeado");
-    // Redirigir a la página de inicio de sesión
     redireccion("/login");
   };
 
@@ -17,7 +15,6 @@ function LayautADmin() {
     // Verificar si el usuario ha iniciado sesión
     const usuarioLogeado = localStorage.getItem("usuarioLogeado");
     if (!usuarioLogeado || usuarioLogeado !== "true") {
-      // Si el usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
       redireccion("/login");
     }
   }, [redireccion]);
@@ -42,9 +39,9 @@ function LayautADmin() {
               aria-controls="v-pills-profile"
               aria-selected="false"
             >
-             Reservas
+              Reservas
             </button>
-         
+
             <button
               className="nav-link"
               id="v-pills-messages-tab"
@@ -54,11 +51,10 @@ function LayautADmin() {
               role="tab"
               aria-controls="v-pills-messages"
               aria-selected="false"
-              onClick={handleCerrarSesion} // Asociar la función de cierre de sesión al botón
+              onClick={handleCerrarSesion}
             >
-             Cerrar Sesión
+              Cerrar Sesión
             </button>
-
           </div>
           <div className="tab-content" id="v-pills-tabContent">
             <div
@@ -68,7 +64,7 @@ function LayautADmin() {
               aria-labelledby="v-pills-home-tab"
               tabIndex="0"
             >
-              <ReservasTable/>
+              <ReservasTable />
             </div>
           </div>
         </div>
